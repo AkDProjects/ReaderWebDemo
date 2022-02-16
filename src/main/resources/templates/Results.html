@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<script type="text/javascript" src="../static/Js/renderjson.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick = "showAll()">Show All</button>
+<button onclick = "collapseAll()">Collapse All</button>
+<div id="display">
+ </div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var data = /*[[${viewResult}]]*/ 'default';
+    /*]]>*/
+
+    var res = JSON.parse(data);
+
+    function showAll(){
+        $('#display').empty();
+        renderjson.set_show_to_level("all");
+        $('#display').append(renderjson(res));
+        //document.getElementById("display").appendChild(renderjson(res));
+    }
+    function collapseAll(){
+        $('#display').empty();
+        renderjson.set_show_to_level(0);
+        $('#display').append(renderjson(res));
+        //document.getElementById("display").appendChild(renderjson(res));
+    }
+    //renderjson.set_icons('+', '-');
+    renderjson.set_show_to_level(1);
+    $('#display').append(renderjson(res));
+    //document.getElementById("display").appendChild(renderjson(res));
+
+
+</script>
+</body>
+</html>
